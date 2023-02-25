@@ -32,6 +32,7 @@ Board::Board(char diff, string name, bool d) {
 }
 void Board::InitAll() {
 	bool keepPlaying = true;
+	int x = 4;
 	/*********************************************************************/
 	//FOR TESTING!!!
 	// Here's where there's code for getting your initial methods working
