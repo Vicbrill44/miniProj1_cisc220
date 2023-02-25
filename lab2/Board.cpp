@@ -32,7 +32,6 @@ Board::Board(char diff, string name, bool d) {
 }
 void Board::InitAll() {
 	bool keepPlaying = true;
-	int x = 4;
 	/*********************************************************************/
 	//FOR TESTING!!!
 	// Here's where there's code for getting your initial methods working
@@ -76,7 +75,7 @@ void Board::InitAll() {
 	endx = 1;
 	endy = size-1;
 	boardConfig();
-	printBoard();
+	//printBoard(); 99999999999999999999999
 	// Your results should look something like the following (walls are random, so
 	// yours will be unique:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -106,17 +105,17 @@ void Board::InitAll() {
 	// Next, let's write the addFood method to add food and print the board:
 	level = 'e';
 	addFood();
-	printBoard();
+	//printBoard(); 9999999999999999999999999
 	cout << "***************************************" << endl;
 	boardConfig();
 	level = 'm';
 	addFood();
-	printBoard();
+	//printBoard();  999999999999999999999999999
 	cout << "***************************************" << endl;
 	boardConfig();
 	level = 'h';
 	addFood();
-	printBoard();
+	printBoard();//09999999999999999999999999999
 	cout << "***************************************" << endl;
 	// OUTPUT Should be something like this (note the different number of Food
 	// items depending on the differing level of difficulty):
@@ -201,19 +200,19 @@ void Board::InitAll() {
 	level = 'e';
 	addFood();
 	addTraps();
-	printBoard();
+	//printBoard();99999999999999999999999999999
 	cout << "***************************************" << endl;
 	boardConfig();
 	level = 'm';
 	addFood();
 	addTraps();
-	printBoard();
+	//printBoard();99999999999999999999999999999999
 	cout << "***************************************" << endl;
 	boardConfig();
 	level = 'h';
 	addFood();
 	addTraps();
-	printBoard();
+	//printBoard();999999999999999999999999999999999
 	cout << "***************************************" << endl;
 	// Your output should look something like this:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -376,7 +375,7 @@ void Board::printBoard() {
 //	 this method first uses the dog's printDog method to print out info
 //	 about the dog, and then it prints out the board as follows:
 //	 *
-//	 This method prints out hte board such that it looks like a board.  It
+//	 This method prints out the board such that it looks like a board.  It
 //	 prints a blank space for any square (for squares that do not have
 //	 food, traps, walls, the dog, and aren't the beginning or the ending.
 //   (at first, there will be no food or traps, or even walls or dog, but we
@@ -387,6 +386,31 @@ void Board::printBoard() {
 //	 border around the entire board so it was easier to look at, and, equally,
 //	 I placed an -> arro (thats a minus and a greater than sign) in the border
 //	 for where the beginning of the game was and where the end of the game was.
+
+	//dog stuff goes here first
+
+	//print top dashed lines
+	for(int i = 0; i<21; i++){
+		cout<<" _";
+	}
+	cout<<endl;
+
+	//print array board
+	for(int i = 0; i<size;i++){
+		cout<<"/";
+		for(int j = 0; j<size;j++){
+			cout<<" ";
+			cout<< board[i][j];
+		}cout<<" /";
+
+		cout<<endl;
+	}
+
+	//print bottom dashed lines
+	for(int i = 0; i<21; i++){
+			cout<<" _";
+		}
+		cout<<endl;
 
 //mydog.printDog();  // COMMENT THIS IN WHEN YOU Write your Dog class!!
 
@@ -427,6 +451,7 @@ void Board::boardConfig() {
 	 *
 	 *
 	 */
+
 
 }
 
@@ -505,7 +530,7 @@ void Board::playGame() {
 		char c;
 		cin >> c;
 		play = moveDog(c);
-		printBoard();
+		//printBoard();9999999999999999999999999999999
 	}
 
 
