@@ -115,7 +115,7 @@ void Board::InitAll() {
 	boardConfig();
 	level = 'h';
 	addFood();
-	printBoard();//09999999999999999999999999999
+	//printBoard();09999999999999999999999999999
 	cout << "***************************************" << endl;
 	// OUTPUT Should be something like this (note the different number of Food
 	// items depending on the differing level of difficulty):
@@ -397,11 +397,11 @@ void Board::printBoard() {
 
 	//print array board
 	for(int i = 0; i<size;i++){
-		cout<<"/";
+		cout<<"|";
 		for(int j = 0; j<size;j++){
 			cout<<" ";
 			cout<< board[i][j];
-		}cout<<" /";
+		}cout<<" |";
 
 		cout<<endl;
 	}
