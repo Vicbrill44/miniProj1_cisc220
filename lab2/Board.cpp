@@ -75,7 +75,7 @@ void Board::InitAll() {
 	endx = 1;
 	endy = size-1;
 	boardConfig();
-	//printBoard(); 99999999999999999999999
+	//printBoard(); 99999999999999999999999999999
 	// Your results should look something like the following (walls are random, so
 	// yours will be unique:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -107,12 +107,12 @@ void Board::InitAll() {
 	addFood();
 	//printBoard(); 9999999999999999999999999
 	cout << "***************************************" << endl;
-	boardConfig();
+	//boardConfig(); 8888888888888888888888888
 	level = 'm';
 	addFood();
 	//printBoard();  999999999999999999999999999
 	cout << "***************************************" << endl;
-	boardConfig();
+	//boardConfig(); 8888888888888888888888888
 	level = 'h';
 	addFood();
 	//printBoard();09999999999999999999999999999
@@ -202,13 +202,13 @@ void Board::InitAll() {
 	addTraps();
 	//printBoard();99999999999999999999999999999
 	cout << "***************************************" << endl;
-	boardConfig();
+	//boardConfig(); 888888888888888888888888
 	level = 'm';
 	addFood();
 	addTraps();
 	//printBoard();99999999999999999999999999999999
 	cout << "***************************************" << endl;
-	boardConfig();
+	//boardConfig(); 88888888888888888888888888888
 	level = 'h';
 	addFood();
 	addTraps();
@@ -401,16 +401,17 @@ void Board::printBoard() {
 		for(int j = 0; j<size;j++){
 			cout<<" ";
 			cout<< board[i][j];
-		}cout<<" |";
+		}
+		cout<<" |";
 
 		cout<<endl;
 	}
 
 	//print bottom dashed lines
 	for(int i = 0; i<21; i++){
-			cout<<" _";
-		}
-		cout<<endl;
+		cout<<" _";
+	}
+	cout<<endl;
 
 //mydog.printDog();  // COMMENT THIS IN WHEN YOU Write your Dog class!!
 
@@ -451,6 +452,108 @@ void Board::boardConfig() {
 	 *
 	 *
 	 */
+
+	//first put dummy variables into the main board array
+	/*for(int i = 0; i<size;i++){
+		for(int j = 0; j<size;j++){
+			board[i][j] = '+';
+		}
+	}*/
+
+	// add random horizontal and vertical walls in odd rows and columns *************
+
+	int sampleArr[] = {1,3,5,7,9,11,13,15,17,19};//our odd number array sample for board
+	int wallConfig; //this will be used to dictate how many wall builds there will be for rows and columns (either 6 or 3)
+	int rowBuildAmount;//will hold either 6 or 3 wall builds
+	int columnBuildAmount;//will hold either 6 or 3 wall builds
+
+	//these will be used to pick the random columns and rows that will have walls
+	int temp;
+	int counter = 1;
+	int validation = 0;//validation = 1 is bad, 0 is good
+	int isDuplicate = 0;//if 0 then not duplicate, if 1 then duplicate
+
+
+	wallConfig = rand() % 2;//will generate wither 0 and 1 which will determine walls build amounts for columns
+
+	//will dictate how many wall builds for rows and columns
+	if(wallConfig == 0){
+		columnBuildAmount = 6;
+		rowBuildAmount = 3;
+	}
+	else{
+		columnBuildAmount = 3;
+		rowBuildAmount = 6;
+	}
+
+	//arrays thats will be used to store the random odd numbers that will be used to pick the wall build rows and columns
+	int randColumnArr[columnBuildAmount];
+	int randRowArr[rowBuildAmount];
+
+	//giving the rand arrays one random odd value to start with from the sampleArr
+	randColumnArr[0] = sampleArr[rand()%10];
+	randRowArr[0] = sampleArr[rand()%10];
+
+	//algorithm to store random odd numbers in the randColumnArr
+	for(int i = 1;i<columnBuildAmount; i++){//needs to loop x amount of times, where x is the size of randArr
+		//this while loop needs to run until it finally picks a random number from the sampleArr that is not
+		//already in the randArray and adds it to the randArray
+		while(validation != 1){ //if you hit number 1, stop while loop you added number to randArray
+			temp = sampleArr[rand()%10];//pick a random number from sampleArr
+			//loop through randArr
+			for(int j = 0; j<counter;j++)
+			{
+				if(temp == randColumnArr[j])
+				{
+					isDuplicate = 1;
+				}
+			}
+			if(isDuplicate == 0)//did not hit a duplicate
+			{
+				randColumnArr[i] = temp;
+				validation = 1;
+			}
+			else
+			{
+				isDuplicate = 0;
+			}
+		}
+		counter+=1;
+		validation = 0;
+	}
+
+	//reset variables for algorithm
+	counter = 1;
+	validation = 0;//validation = 1 is bad, 0 is good
+	isDuplicate = 0;//if 0 then not duplicate, if 1 then duplicate
+
+	//algorithm that will generate the random odd numbers in the rowColumnArr
+	for(int i = 1;i<rowBuildAmount; i++){//needs to loop x amount of times, where x is the size of randArr
+			//this while loop needs to run until it finally picks a random number from the sampleArr that is not
+			//already in the randArray and adds it to the randArray
+		while(validation != 1){ //if you hit number 1, stop while loop you added number to randArray
+			temp = sampleArr[rand()%10];//pick a random number from sampleArr
+			//loop through randArr
+			for(int j = 0; j<counter;j++)
+			{
+				if(temp == randRowArr[j])
+				{
+					isDuplicate = 1;
+				}
+			}
+			if(isDuplicate == 0)//did not hit a duplicate
+			{
+				randRowArr[i] = temp;
+				validation = 1;
+			}
+			else
+			{
+				isDuplicate = 0;
+			}
+		}
+		counter+=1;
+		validation = 0;
+	}
 
 
 }
@@ -517,7 +620,6 @@ bool Board::moveDog(char c) {
 		 * fields correctly!
 		 *
 		 */
-
 
 
 }
