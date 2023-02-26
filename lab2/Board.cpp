@@ -617,17 +617,58 @@ void Board::boardConfig() {
 		for(int i = 0; i < rowBuildAmount; i++){
 			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
 			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
-				board[randRowArr[i]][wallBuilderPtr[j]] = '|';
+				board[randRowArr[i]][wallBuilderPtr[j]] = '-';
 			}
 		}
+
+		//make the starting and exiting points
+		board[rand()%size][0] = 'D';
+		board[rand()%size][19] = 'E';
+
 	}
 
 	if(level == 'm'){
 		maxAmountWalls = 13;
+		//fill in columns with walls
+		for(int i = 0; i < columnBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[wallBuilderPtr[j]][randColumnArr[i]] = '|';
+			}
+		}
+
+		//fill in rows with walls
+		for(int i = 0; i < rowBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[randRowArr[i]][wallBuilderPtr[j]] = '-';
+			}
+		}
+		//make the starting and exiting points
+		board[rand()%size][0] = 'D';
+		board[rand()%size][19] = 'E';
 	}
 
 	if(level == 'h'){
 		maxAmountWalls = 16;
+		//fill in columns with walls
+		for(int i = 0; i < columnBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[wallBuilderPtr[j]][randColumnArr[i]] = '|';
+			}
+		}
+
+		//fill in rows with walls
+		for(int i = 0; i < rowBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[randRowArr[i]][wallBuilderPtr[j]] = '-';
+			}
+		}
+		//make the starting and exiting points
+		board[rand()%size][0] = 'D';
+		board[rand()%size][19] = 'E';
 	}
 
 

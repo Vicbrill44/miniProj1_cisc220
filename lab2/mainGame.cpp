@@ -15,7 +15,7 @@ using namespace std;
 
 int main() {
 	srand(time(NULL));
-	Board board('e',"fido", true);
+	Board board('m',"fido", true);
 	return 0;
 }
 
