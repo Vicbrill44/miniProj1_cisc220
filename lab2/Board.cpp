@@ -30,6 +30,43 @@ Board::Board(char diff, string name, bool d) {
 	wallStrength = 6;
 	InitAll();
 }
+
+int* Board::wallBuilderAlg(int maxAmountWalls){
+	static int x[16];//the array that will hold the random numbers chosen for the walls
+	int temp;
+	int validation = 1;
+	int counter = 0;
+	int isDuplicate = 0;
+
+	x[0] = rand()%20;
+
+	for(int i = 1; i<maxAmountWalls; i++){
+		while(validation != 1){
+			temp = rand()%20;
+			for(int j = 0; j<counter;j++)
+			{
+				if(temp == x[j])
+				{
+					isDuplicate = 1;
+				}
+			}
+			if(isDuplicate == 0)
+			{
+				x[i] = temp;
+				validation = 1;
+			}
+			else
+			{
+				isDuplicate = 0;
+			}
+		}
+		counter +=1;
+		validation = 0;
+
+	}
+	return x;
+}
+
 void Board::InitAll() {
 	bool keepPlaying = true;
 	/*********************************************************************/
@@ -75,7 +112,7 @@ void Board::InitAll() {
 	endx = 1;
 	endy = size-1;
 	boardConfig();
-	//printBoard(); 99999999999999999999999999999
+	printBoard();
 	// Your results should look something like the following (walls are random, so
 	// yours will be unique:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -105,7 +142,7 @@ void Board::InitAll() {
 	// Next, let's write the addFood method to add food and print the board:
 	level = 'e';
 	addFood();
-	//printBoard(); 9999999999999999999999999
+	//printBoard(); 9999999999999999999999
 	cout << "***************************************" << endl;
 	//boardConfig(); 8888888888888888888888888
 	level = 'm';
@@ -473,6 +510,13 @@ void Board::boardConfig() {
 	int validation = 0;//validation = 1 is bad, 0 is good
 	int isDuplicate = 0;//if 0 then not duplicate, if 1 then duplicate
 
+	//make all the tiles in the board blank
+	for(int i = 0; i<size;i++){
+		for(int j = 0; j<size;j++){
+			board[i][j] = ' ';
+		}
+	}
+
 
 	wallConfig = rand() % 2;//will generate wither 0 and 1 which will determine walls build amounts for columns
 
@@ -553,6 +597,37 @@ void Board::boardConfig() {
 		}
 		counter+=1;
 		validation = 0;
+	}
+
+	int maxAmountWalls;
+	int* wallBuilderPtr;
+
+	//generating the physical walls for the board
+	if(level == 'e'){
+		maxAmountWalls = 9;
+		//fill in columns with walls
+		for(int i = 0; i < columnBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[wallBuilderPtr[j]][randColumnArr[i]] = '|';
+			}
+		}
+
+		//fill in rows with walls
+		for(int i = 0; i < rowBuildAmount; i++){
+			wallBuilderPtr = wallBuilderAlg(maxAmountWalls);//should return an arr of 9 random numbers that will be used to build one column set
+			for(int j = 0; j<maxAmountWalls; j++){//go through wallBuilderArr and fill in board using wall
+				board[randRowArr[i]][wallBuilderPtr[j]] = '|';
+			}
+		}
+	}
+
+	if(level == 'm'){
+		maxAmountWalls = 13;
+	}
+
+	if(level == 'h'){
+		maxAmountWalls = 16;
 	}
 
 

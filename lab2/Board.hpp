@@ -70,6 +70,8 @@ public:
 	/* for this constructor the level is set to be 'e' (which is the default), it calls
 	 * the default dog constructor, and it calls the initAll method.
 	 */
+	int* wallBuilderAlg(int maxAmountWalls);
+
 	void InitAll();
 	/* (I'm giving you this one. )
 	 * It loops for each playing of the game, continuing
