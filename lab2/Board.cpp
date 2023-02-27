@@ -140,20 +140,22 @@ void Board::InitAll() {
 //
 	//
 	// Next, let's write the addFood method to add food and print the board:
+	/*
 	level = 'e';
 	addFood();
-	//printBoard(); 9999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
-	//boardConfig(); 8888888888888888888888888
+	boardConfig();
 	level = 'm';
 	addFood();
-	//printBoard();  999999999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
-	//boardConfig(); 8888888888888888888888888
+	boardConfig();
 	level = 'h';
 	addFood();
-	//printBoard();09999999999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
+	*/
 	// OUTPUT Should be something like this (note the different number of Food
 	// items depending on the differing level of difficulty):
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -237,19 +239,19 @@ void Board::InitAll() {
 	level = 'e';
 	addFood();
 	addTraps();
-	//printBoard();99999999999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
-	//boardConfig(); 888888888888888888888888
+	boardConfig();
 	level = 'm';
 	addFood();
 	addTraps();
-	//printBoard();99999999999999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
-	//boardConfig(); 88888888888888888888888888888
+	boardConfig();
 	level = 'h';
 	addFood();
 	addTraps();
-	//printBoard();999999999999999999999999999999999
+	printBoard();
 	cout << "***************************************" << endl;
 	// Your output should look something like this:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -449,6 +451,7 @@ void Board::printBoard() {
 		cout<<" _";
 	}
 	cout<<endl;
+
 
 //mydog.printDog();  // COMMENT THIS IN WHEN YOU Write your Dog class!!
 
@@ -683,8 +686,55 @@ void Board::addFood() {
 	 * hard I added size-4 foods.  The amount of strength the dog gets when they eat (aka
 	 * move onto) the food is determined in the moveDog method.
 	 */
+	char tempChar;
+	int randRow;
+	int randColumn;
+	int validation = 0;
 
+	if(level == 'e'){
+		for(int i = 0; i<size;i++){
+			while(validation != 1){
+				randRow = rand()%20;
+				randColumn = rand()%20;
+				tempChar = board[randRow][randColumn];
+				if(tempChar == ' '){
+					board[randRow][randColumn] = 'F';
+					validation = 1;
+				}
+			}
+			validation = 0;
+		}
+	}
 
+	if(level == 'm'){
+		for(int i = 0; i<size-2;i++){
+			while(validation != 1){
+				randRow = rand()%20;
+				randColumn = rand()%20;
+				tempChar = board[randRow][randColumn];
+				if(tempChar == ' '){
+					board[randRow][randColumn] = 'F';
+					validation = 1;
+				}
+			}
+			validation = 0;
+		}
+	}
+
+	if(level == 'h'){
+		for(int i = 0; i<size-4;i++){
+			while(validation != 1){
+				randRow = rand()%20;
+				randColumn = rand()%20;
+				tempChar = board[randRow][randColumn];
+				if(tempChar == ' '){
+					board[randRow][randColumn] = 'F';
+					validation = 1;
+				}
+			}
+			validation = 0;
+		}
+	}
 }
 
 void Board::addTraps() {
@@ -695,6 +745,100 @@ void Board::addTraps() {
 	 * only printed on the board when the game is in debug mode.  The amount of strength each trap
 	 * saps from the dog is determined in the moveDog method when the dog moves on a Trap.
 	 */
+	char tempChar;
+	int randRow;
+	int randColumn;
+	int validation = 0;
+
+	if(!debug){
+		if(level == 'e'){
+			for(int i = 0; i<size-6;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = NULL;
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+		if(level == 'm'){
+			for(int i = 0; i<size-8;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = NULL;
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+		if(level == 'h'){
+			for(int i = 0; i<size-10;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = NULL;
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+	}
+	else{
+		if(level == 'e'){
+			for(int i = 0; i<size-6;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = 'T';
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+		if(level == 'm'){
+			for(int i = 0; i<size-8;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = 'T';
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+		if(level == 'h'){
+			for(int i = 0; i<size-10;i++){
+				while(validation != 1){
+					randRow = rand()%20;
+					randColumn = rand()%20;
+					tempChar = board[randRow][randColumn];
+					if(tempChar == ' '){
+						board[randRow][randColumn] = 'T';
+						validation = 1;
+					}
+				}
+				validation = 0;
+			}
+		}
+
+	}
 
 
 }
