@@ -44,7 +44,7 @@ class Board {
 	int endx;  // THe goal location on the right side (random x value)
 	int endy;  // will be size -1
 	char level; //'e' for easy, 'm' for medium, 'h' for hard (user can input in the initAll() method)
-	//Dog mydog;  //the dog object that's moving through
+	Dog mydog;  //the dog object that's moving through
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	//comment the above line in when you write your dog class!!!
 	bool debug;
@@ -71,6 +71,14 @@ public:
 	 * the default dog constructor, and it calls the initAll method.
 	 */
 	int* wallBuilderAlg(int maxAmountWalls);
+	/* This is a method that will return an array for building the physical walls
+	 * on the board at random for both rows and columns
+	 * */
+
+	bool isNotEdge(char move);
+	/* The method will return a boolean true if the move up, down, left, right is
+	 * not leading you to an edge, it will return false if it does lead to an edge
+	 * */
 
 	void InitAll();
 	/* (I'm giving you this one. )

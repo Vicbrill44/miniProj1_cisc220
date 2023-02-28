@@ -24,7 +24,7 @@ Board::Board(bool d){
 Board::Board(char diff, string name, bool d) {
 	level = diff;
 	debug = d;
-	//mydog.name = name;
+	mydog.name = name;
 	//^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	//COMMENT the above line BACK IN AFTER YOU WRITE YOUR DOG CLASS
 	wallStrength = 6;
@@ -67,6 +67,66 @@ int* Board::wallBuilderAlg(int maxAmountWalls){
 	return x;
 }
 
+bool Board::isNotEdge(char move){
+	//grab the current coords of the dog
+	int tempx = mydog.x;
+	int tempy = mydog.y;
+	int checkNum;//if number is -1, this means we it an edge
+	bool tempBool = false;
+
+	if(move == 'u'){
+		tempx = tempx - 1;
+		if(tempx >= 0 ){
+			tempBool = true;
+		}
+		else{
+			//this means we hit an edge
+			cout<<"You hit an edge trying to go UP"<<endl;
+		}
+	}
+
+	else if(move == 'd'){
+		tempx = tempx + 1;
+		if(tempx <= size-1){
+			tempBool = true;
+		}
+		else{
+			//this means we hit an edge
+			cout<<"You hit an edge trying to go DOWN"<<endl;
+		}
+	}
+
+	else if(move == 'l'){
+		tempy = tempy - 1;
+		if(tempy >= 0 ){
+			tempBool = true;
+		}
+		else{
+			//this means we hit an edge
+			cout<<"You hit an edge trying to go LEFT"<<endl;
+		}
+	}
+
+	else if(move == 'r'){
+		tempy = tempy + 1;
+		if(tempy <= size-1){
+			tempBool = true;
+		}
+		else{
+			//this means we hit an edge
+			cout<<"You hit an edge trying to go RIGHT"<<endl;
+		}
+	}
+
+	else{
+		cout<<"You must input (u,d,l,r)"<<endl;
+	}
+
+	return tempBool;
+
+
+}
+
 void Board::InitAll() {
 	bool keepPlaying = true;
 	/*********************************************************************/
@@ -78,7 +138,7 @@ void Board::InitAll() {
 	// First:  Write and test printBoard following the instructions inside of
 	// the printBoard Method below.  Then test it to make sure it's working
 	// properly.
-	printBoard();
+	//printBoard();
 	// Your output should be this:
 	//		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 	//		| 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 |
@@ -107,12 +167,12 @@ void Board::InitAll() {
 	// Next:
 	// Write the boardConfig Method using the instructions inside the BoardConfig
 	// method below, and then test it.
-	startx = 1;
-	starty = 0;
-	endx = 1;
-	endy = size-1;
-	boardConfig();
-	printBoard();
+	//startx = 1;
+	//starty = 0;
+	//endx = 1;
+	//endy = size-1;
+	//boardConfig();
+	//printBoard();
 	// Your results should look something like the following (walls are random, so
 	// yours will be unique:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -140,22 +200,20 @@ void Board::InitAll() {
 //
 	//
 	// Next, let's write the addFood method to add food and print the board:
-	/*
-	level = 'e';
-	addFood();
-	printBoard();
-	cout << "***************************************" << endl;
-	boardConfig();
-	level = 'm';
-	addFood();
-	printBoard();
-	cout << "***************************************" << endl;
-	boardConfig();
-	level = 'h';
-	addFood();
-	printBoard();
-	cout << "***************************************" << endl;
-	*/
+	//level = 'e';
+	//addFood();
+	//printBoard();
+	//cout << "***************************************" << endl;
+	//boardConfig();
+	//level = 'm';
+	//addFood();
+	//printBoard();
+	//cout << "***************************************" << endl;
+	//boardConfig();
+	//level = 'h';
+	//addFood();
+	//printBoard();
+	//cout << "***************************************" << endl;
 	// OUTPUT Should be something like this (note the different number of Food
 	// items depending on the differing level of difficulty):
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
@@ -236,23 +294,23 @@ void Board::InitAll() {
 	// method, as described below.  Your output should be as follows:
 
 
-	level = 'e';
-	addFood();
-	addTraps();
-	printBoard();
-	cout << "***************************************" << endl;
-	boardConfig();
-	level = 'm';
-	addFood();
-	addTraps();
-	printBoard();
-	cout << "***************************************" << endl;
-	boardConfig();
-	level = 'h';
-	addFood();
-	addTraps();
-	printBoard();
-	cout << "***************************************" << endl;
+	//level = 'e';
+	//addFood();
+	//addTraps();
+	//printBoard();
+	//cout << "***************************************" << endl;
+	//boardConfig();
+	//level = 'm';
+	//addFood();
+	//addTraps();
+	//printBoard();
+	//cout << "***************************************" << endl;
+	//boardConfig();
+	//level = 'h';
+	//addFood();
+	//addTraps();
+	//printBoard();
+	//cout << "***************************************" << endl;
 	// Your output should look something like this:
 //		 _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 //		|           F F   F | F | F   F     |     |
@@ -347,10 +405,10 @@ void Board::InitAll() {
 //
 // And now write moveDog() as described inside the  moveDog method, below.
 // Once done, uncomment out the following 4 lines and test with the following code:
-//	moveDog('d');
-//	moveDog('u');
-//	moveDog('r');
-//	moveDog('l');
+	//moveDog('d');
+	//moveDog('u');
+	//moveDog('r');
+	//moveDog('l');
 	// your dog should move down, up, right, and then left.  If you hit a food
 	// or a trap, you should get a message as described in the moveDog method, below.
 
@@ -369,7 +427,7 @@ void Board::InitAll() {
 	 * COMMENT OUT THE ABOVE TESTING CODE AND COMMENT IN THE BELOW CODE TO RUN
 	 * THE GAME.
 	 */
-	/*
+
 	while (keepPlaying) {
 		cout << "What level of difficulty do you want (e, m, or h)?" << endl;
 		char c;
@@ -400,7 +458,6 @@ void Board::InitAll() {
 			keepPlaying = false;
 		}
 	}
-	*/
 }
 
 
@@ -453,7 +510,8 @@ void Board::printBoard() {
 	cout<<endl;
 
 
-//mydog.printDog();  // COMMENT THIS IN WHEN YOU Write your Dog class!!
+
+	mydog.printDog();  // COMMENT THIS IN WHEN YOU Write your Dog class!!
 
 }
 
@@ -492,13 +550,6 @@ void Board::boardConfig() {
 	 *
 	 *
 	 */
-
-	//first put dummy variables into the main board array
-	/*for(int i = 0; i<size;i++){
-		for(int j = 0; j<size;j++){
-			board[i][j] = '+';
-		}
-	}*/
 
 	// add random horizontal and vertical walls in odd rows and columns *************
 
@@ -625,8 +676,16 @@ void Board::boardConfig() {
 		}
 
 		//make the starting and exiting points
-		board[rand()%size][0] = 'D';
-		board[rand()%size][19] = 'E';
+		startx = rand()%size;
+		starty = 0;
+		endx = rand()%size;
+		endy = size-1;
+
+		board[startx][starty] = 'D';
+		board[endx][endy] = 'E';
+
+		mydog.x = startx;
+		mydog.y = starty;
 
 	}
 
@@ -648,8 +707,16 @@ void Board::boardConfig() {
 			}
 		}
 		//make the starting and exiting points
-		board[rand()%size][0] = 'D';
-		board[rand()%size][19] = 'E';
+		startx = rand()%size;
+		starty = 0;
+		endx = rand()%size;
+		endy = size-1;
+
+		board[startx][starty] = 'D';
+		board[endx][endy] = 'E';
+
+		mydog.x = startx;
+		mydog.y = starty;
 	}
 
 	if(level == 'h'){
@@ -670,8 +737,16 @@ void Board::boardConfig() {
 			}
 		}
 		//make the starting and exiting points
-		board[rand()%size][0] = 'D';
-		board[rand()%size][19] = 'E';
+		startx = rand()%size;
+		starty = 0;
+		endx = rand()%size;
+		endy = size-1;
+
+		board[startx][starty] = 'D';
+		board[endx][endy] = 'E';
+
+		mydog.x = startx;
+		mydog.y = starty;
 	}
 
 
@@ -881,6 +956,293 @@ bool Board::moveDog(char c) {
 		 *
 		 */
 
+	int tempBool = true; //needs to be proven false to end game by loss or win conditions otherwise keep playing by returning true
+	int randNum;
+	bool canBreakWall;
+	string userResponse;
+
+	if(c == 'u'){
+		if(isNotEdge(c)){
+			board[mydog.x][mydog.y] = ' '; // change the char the Dog is on to a blank
+			mydog.x -= 1; //changing the coord of the dog row, since going up means x - 1
+
+			//check if dog moves over food
+			if(board[mydog.x][mydog.y] == 'F')
+			{
+				randNum = (rand() % 16) + 2;
+				tempBool = mydog.changeStrength(randNum); //should always remain true since adding a positive num
+			}
+			//check if we reached the end E and won the game
+			if(board[mydog.x][mydog.y] == 'E')
+			{
+				mydog.won();
+				tempBool = false;
+				//return tempBool;
+			}
+			//check if dog moves over a trap
+			if(board[mydog.x][mydog.y] == 'T' || board[mydog.x][mydog.y] == NULL)
+			{
+				randNum = (rand() % 16) + 2;
+				randNum = randNum * -1;
+				tempBool = mydog.changeStrength(randNum);
+				/*
+				if(tempBool == false){
+					return tempBool;
+				}
+				*/
+			}
+			//if user touches a wall
+			if(board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '-')
+			{
+				if(mydog.strength > wallStrength){
+					canBreakWall = true;
+				}
+				if(canBreakWall){
+					cout<<"You touched a wall and have enough strength to break it, do you want to break it (type either yes or no): ";
+					cin >> userResponse;
+					if(userResponse == "yes"){
+						mydog.strength -=6;
+
+					}
+					else{
+						mydog.x +=1;
+					}
+				}
+				else{
+					cout<<"You ran into a wall, your strength will now be reduced by 1"<<endl;
+					mydog.x +=1;
+				}
+
+			}
+			//if the dog moves into a blank square
+			if(board[mydog.x][mydog.y] == ' ')
+			{
+				tempBool = mydog.changeStrength(-2);
+				//return tempBool;
+			}
+
+			board[mydog.x][mydog.y] = 'D'; //change the char of the board coord we land on to a D
+		}
+		else{
+
+		}
+	}
+
+	else if(c == 'd'){
+		if(isNotEdge(c)){
+			//*******************************************************************
+			board[mydog.x][mydog.y] = ' '; // change the char the Dog is on to a blank
+			mydog.x += 1; //changing the coord of the dog row, since going down means x + 1
+
+			//check if dog moves over food
+			if(board[mydog.x][mydog.y] == 'F')
+			{
+				randNum = (rand() % 16) + 2;
+				tempBool = mydog.changeStrength(randNum); //should always remain true since adding a positive num
+			}
+			//check if we reached the end E and won the game
+			if(board[mydog.x][mydog.y] == 'E')
+			{
+				mydog.won();
+				tempBool = false;
+				//return tempBool;
+			}
+			//check if dog moves over a trap
+			if(board[mydog.x][mydog.y] == 'T' || board[mydog.x][mydog.y] == NULL)
+			{
+				randNum = (rand() % 16) + 2;
+				randNum = randNum * -1;
+				tempBool = mydog.changeStrength(randNum);
+				/*
+				if(tempBool == false){
+					return tempBool;
+				}
+				*/
+			}
+			//if user touches a wall
+			if(board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '-')
+			{
+				if(mydog.strength > wallStrength){
+					canBreakWall = true;
+				}
+				if(canBreakWall){
+					cout<<"You touched a wall and have enough strength to break it, do you want to break it (type either yes or no): ";
+					cin >> userResponse;
+					if(userResponse == "yes"){
+						mydog.strength -=6;
+
+					}
+					else{
+						mydog.x -=1;
+					}
+				}
+				else{
+					cout<<"You ran into a wall, your strength will now be reduced by 1"<<endl;
+					mydog.x -=1;
+				}
+
+			}
+			//if the dog moves into a blank square
+			if(board[mydog.x][mydog.y] == ' ')
+			{
+				tempBool = mydog.changeStrength(-2);
+				//return tempBool;
+			}
+
+			board[mydog.x][mydog.y] = 'D'; //change the char of the board coord we land on to a D
+
+		//*********************
+		}
+		else{
+
+		}
+	}
+
+	else if(c == 'l'){
+		if(isNotEdge(c)){
+			//*******************************************************************
+			board[mydog.x][mydog.y] = ' '; // change the char the Dog is on to a blank
+			mydog.y -= 1; //changing the coord of the dog row, since going left means y - 1
+
+			//check if dog moves over food
+			if(board[mydog.x][mydog.y] == 'F')
+			{
+				randNum = (rand() % 16) + 2;
+				tempBool = mydog.changeStrength(randNum); //should always remain true since adding a positive num
+			}
+			//check if we reached the end E and won the game
+			if(board[mydog.x][mydog.y] == 'E')
+			{
+				mydog.won();
+				tempBool = false;
+				//return tempBool;
+			}
+			//check if dog moves over a trap
+			if(board[mydog.x][mydog.y] == 'T' || board[mydog.x][mydog.y] == NULL)
+			{
+				randNum = (rand() % 16) + 2;
+				randNum = randNum * -1;
+				tempBool = mydog.changeStrength(randNum);
+				/*
+				if(tempBool == false){
+					return tempBool;
+				}
+				*/
+			}
+			//if user touches a wall
+			if(board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '-')
+			{
+				if(mydog.strength > wallStrength){
+					canBreakWall = true;
+				}
+				if(canBreakWall){
+					cout<<"You touched a wall and have enough strength to break it, do you want to break it (type either yes or no): ";
+					cin >> userResponse;
+					if(userResponse == "yes"){
+						mydog.strength -=6;
+
+					}
+					else{
+						mydog.y +=1;
+					}
+				}
+				else{
+					cout<<"You ran into a wall, your strength will now be reduced by 1"<<endl;
+					mydog.y +=1;
+				}
+
+			}
+			//if the dog moves into a blank square
+			if(board[mydog.x][mydog.y] == ' ')
+			{
+				tempBool = mydog.changeStrength(-2);
+				//return tempBool;
+			}
+
+			board[mydog.x][mydog.y] = 'D'; //change the char of the board coord we land on to a D
+
+		//*********************
+		}
+		else{
+
+		}
+	}
+
+	else if(c == 'r'){
+		if(isNotEdge(c)){
+			//*******************************************************************
+			board[mydog.x][mydog.y] = ' '; // change the char the Dog is on to a blank
+			mydog.y += 1; //changing the coord of the dog row, since going right means y + 1
+
+			//check if dog moves over food
+			if(board[mydog.x][mydog.y] == 'F')
+			{
+				randNum = (rand() % 16) + 2;
+				tempBool = mydog.changeStrength(randNum); //should always remain true since adding a positive num
+			}
+			//check if we reached the end E and won the game
+			if(board[mydog.x][mydog.y] == 'E')
+			{
+				mydog.won();
+				tempBool = false;
+				//return tempBool;
+			}
+			//check if dog moves over a trap
+			if(board[mydog.x][mydog.y] == 'T' || board[mydog.x][mydog.y] == NULL)
+			{
+				randNum = (rand() % 16) + 2;
+				randNum = randNum * -1;
+				tempBool = mydog.changeStrength(randNum);
+				/*
+				if(tempBool == false){
+					return tempBool;
+				}
+				*/
+			}
+			//if user touches a wall
+			if(board[mydog.x][mydog.y] == '|' || board[mydog.x][mydog.y] == '-')
+			{
+				if(mydog.strength > wallStrength){
+					canBreakWall = true;
+				}
+				if(canBreakWall){
+					cout<<"You touched a wall and have enough strength to break it, do you want to break it (type either yes or no): ";
+					cin >> userResponse;
+					if(userResponse == "yes"){
+						mydog.strength -=6;
+
+					}
+					else{
+						mydog.y -=1;
+					}
+				}
+				else{
+					cout<<"You ran into a wall, your strength will now be reduced by 1"<<endl;
+					mydog.y -=1;
+				}
+
+			}
+			//if the dog moves into a blank square
+			if(board[mydog.x][mydog.y] == ' ')
+			{
+				tempBool = mydog.changeStrength(-2);
+				//return tempBool;
+			}
+
+			board[mydog.x][mydog.y] = 'D'; //change the char of the board coord we land on to a D
+
+		//*********************
+		}
+		else{
+
+		}
+
+	}
+	else{
+		cout<<"Redo move"<<endl;
+	}
+
+	return tempBool;
 
 }
 
@@ -892,7 +1254,7 @@ void Board::playGame() {
 		char c;
 		cin >> c;
 		play = moveDog(c);
-		//printBoard();9999999999999999999999999999999
+		printBoard();
 	}
 
 

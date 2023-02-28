@@ -29,6 +29,7 @@ public:
 	* if I don't initialize all my fields in the constructor
 	*/
 
+
 	Dog();//constructor
 	/* constructor, I made the default be fluffy, but you can make it anything you like!!
 	* I set the strength to be 50 (again, I just picked 50), and I made the original
